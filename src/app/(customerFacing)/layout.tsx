@@ -15,7 +15,7 @@ export default function Layout({
         <NavLink href="/products">Products</NavLink>
         <NavLink href="/orders">Sales</NavLink>
       </Nav>
-      <div className="container my-5">customFacing{children}</div>
+      <div className="container my-5">{children}</div>
     </>
   );
 }
