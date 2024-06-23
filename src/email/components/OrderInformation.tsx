@@ -57,3 +57,7 @@ export function OrderInformation({
     </>
   );
 }
+
+export function TestRebase() {
+  return <h1>Rebasing</h1>;
+}
