@@ -12,22 +12,32 @@ import { OrderInformation } from "./components/OrderInformation";
 type PurchaseReceiptEmailProps = {
   product: {
     name: string;
+    imagePath: string;
+    description: string;
   };
   order: { id: string; createdAt: Date; pricePaidInCents: number };
+  downloadVerificationId: string;
 };
 
 PurchaseReceiptEmail.PreviewProps = {
-  product: { name: "Product name" },
+  product: {
+    name: "Product name",
+    description: " Some Description",
+    imagePath:
+      "/products/1956711f-1b0a-4bb5-b91e-e3f3c3d2061d-banner-What is NextJs.jpg",
+  },
   order: {
     id: crypto.randomUUID(),
     createdAt: new Date(),
     pricePaidInCents: 10000,
   },
+  downloadVerificationId: crypto.randomUUID(),
 } satisfies PurchaseReceiptEmailProps;
 
 export default function PurchaseReceiptEmail({
   product,
   order,
+  downloadVerificationId,
 }: PurchaseReceiptEmailProps) {
   return (
     <Html>
@@ -40,7 +50,7 @@ export default function PurchaseReceiptEmail({
             <OrderInformation
               order={order}
               product={product}
-              downloadVerificationId=""
+              downloadVerificationId={downloadVerificationId}
             />
           </Container>
         </Body>

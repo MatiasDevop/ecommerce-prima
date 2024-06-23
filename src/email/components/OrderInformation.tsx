@@ -1,9 +1,9 @@
 import { formatCurrency } from "@/lib/formatters";
-import { Column, Row, Section, Text } from "@react-email/components";
+import { Column, Row, Section, Text, Img } from "@react-email/components";
 
 type OrderInformationProps = {
   order: { id: string; createdAt: Date; pricePaidInCents: number };
-  product: {};
+  product: { imagePath: string; name: string; description: string };
   downloadVerificationId: string;
 };
 
@@ -39,6 +39,18 @@ export function OrderInformation({
             <Text className="mt-0 mr-4">
               {formatCurrency(order.pricePaidInCents / 100)}
             </Text>
+          </Column>
+        </Row>
+      </Section>
+      <Section className="border border-solid border-gray-500 rounded-lg p-4 md:p-6 my-4">
+        <Img
+          width="100%"
+          alt={product.name}
+          src={`${process.env.NEXT_PUBLIC_SERVER_URL}${product.imagePath}`}
+        />
+        <Row className="mt-8">
+          <Column className="align-bottom">
+            <Text className=" text-lg font-bold m-0 mr-4">{product.name}</Text>
           </Column>
         </Row>
       </Section>
