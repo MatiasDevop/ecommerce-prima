@@ -56,12 +56,19 @@ export async function emailOrderHistory(
     };
   });
 
-  resend.emails.send({
+  const data = await resend.emails.send({
     from: `Supoort <${process.env.SENDER_EMAIL}>`,
     to: user.email,
     subject: "Order History",
     react: <OrderHistoryEmail />,
   });
 
-  return { message: "" };
+  if (data.error) {
+    return { error: "There was an  error sending an email. Please try again" };
+  }
+
+  return {
+    message:
+      "Check your email to view your order history and download your products.",
+  };
 }
